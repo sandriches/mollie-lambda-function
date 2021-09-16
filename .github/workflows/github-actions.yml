@@ -10,6 +10,12 @@ jobs:
       - name: Install deps
         run: npm install
 
+      - name: Create .env file
+        run: |
+          cat << EOF >> .env
+          MOLLIE_TEST_API_KEY=${{ secrets.MOLLIE_TEST_API_KEY }}
+          EOF
+
       - name: Build
         run: npm start
 
