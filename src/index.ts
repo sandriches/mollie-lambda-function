@@ -1,6 +1,13 @@
 import AWS from 'aws-sdk';
 import { createMollieClient } from '@mollie/api-client';
-const mollieClient = createMollieClient({ apiKey: 'test_ayMsEe8EhVxcAysPwCPe35WfzQWnWE' });
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+const testApiKey: string = process.env.MOLLIE_TEST_API_KEY!;
+
+const mollieClient = createMollieClient({ apiKey: testApiKey });
+
 
 exports.handler = async () => {
     // Methods for the Payments API
