@@ -10,12 +10,6 @@ jobs:
       - name: Install deps
         run: npm install
 
-      - name: Create .env file
-        run: |
-          cat << EOF >> .env
-          MOLLIE_TEST_API_KEY=${{ secrets.MOLLIE_TEST_API_KEY }}
-          EOF
-
       - name: Build
         run: npm start
 
@@ -27,10 +21,11 @@ jobs:
 
       - name: Deploy to AWS
         uses: appleboy/lambda-action@master
+        env:
+          MOLLIE_TEST_API_KEY: ${{ secrets.MOLLIE_TEST_API_KEY }}
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: get-mollie-payment-methods-lambda
-          environment: MOLLIE_TEST_API_KEY=${{ secrets.MOLLIE_TEST_API_KEY }}
           zip_file: function.zip

@@ -1,6 +1,9 @@
 # Build folder
 build/
 
+# Mollie config file
+MOLLIE_CONFIG.json
+
 # Logs
 logs
 *.log

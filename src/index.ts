@@ -1,10 +1,17 @@
 import AWS from 'aws-sdk';
 import { createMollieClient } from '@mollie/api-client';
-import * as dotenv from 'dotenv';
+// import * as dotenv from 'dotenv';
+import { loadConfig } from './config';
 
-dotenv.config();
+let config = loadConfig();
+// dotenv.config();
 
-const testApiKey: string = process.env.MOLLIE_TEST_API_KEY!;
+let testApiKey: string;
+try {
+    testApiKey = config.MOLLIE_TEST_API_KEY;
+} catch (err) {
+    throw new Error('Set env config file');
+}
 
 const mollieClient = createMollieClient({ apiKey: testApiKey });
 
