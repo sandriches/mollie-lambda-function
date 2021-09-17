@@ -11,6 +11,7 @@ jobs:
         run: npm install
         env:
           MOLLIE_CONFIG: ${{ secrets.MOLLIE_CONFIG_JSON }}
+          TEST_ENV: "this is a test m8"
 
       - name: Build
         run: npm start
