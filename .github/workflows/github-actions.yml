@@ -2,6 +2,8 @@ name: GitHub Actions
 on: [push]
 jobs:
   Test-GitHub-Actions:
+    env:
+      MOLLIE_CONFIG: ${{ secrets.MOLLIE_CONFIG_JSON }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -9,8 +11,6 @@ jobs:
 
       - name: Install deps
         run: npm install
-        with:
-          MOLLIE_CONFIG: ${{ secrets.MOLLIE_CONFIG_JSON }}
 
       - name: Build
         run: npm start
@@ -23,7 +23,6 @@ jobs:
 
       - name: Deploy to AWS
         uses: appleboy/lambda-action@master
-        env:
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
