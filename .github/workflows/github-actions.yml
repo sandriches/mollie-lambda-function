@@ -8,9 +8,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install deps
+        run: npm install
         env:
           MOLLIE_CONFIG: ${{ secrets.MOLLIE_CONFIG_JSON }}
-        run: npm install
 
       - name: Build
         run: npm start
