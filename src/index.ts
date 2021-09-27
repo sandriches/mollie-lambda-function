@@ -21,6 +21,5 @@ exports.handler = async () => {
 
     // Methods for the Orders API
     methods = await mollieClient.methods.all({ resource: 'orders' });
-    console.log(methods);
     return methods;
 };
